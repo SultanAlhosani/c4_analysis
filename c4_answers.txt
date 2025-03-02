@@ -1,0 +1,21 @@
+1. What is the purpose of the next() function, and how does it contribute to the compilation process?
+
+The next() function of C4 is responsible for performing the lexical analysis – the first stage in the overall compilation process. It reads the source code one character at a time, and combines them into tokens that represent constructs like keywords (if, while), identifiers (x, sum), numbers (123, 0x2A), and operators (+, -, *). This also handles stripping out characters we should ignore, like spaces and comments so the parser receives only valid tokens. C4 also allows hashing for token retrieval, making the symbol lookup faster which benefits the compilation. Next() function organizes raw codes by putting them in data structures called tokens that will be used by the parser to parse and by the code generator to generate code hence next function is an integral part of the compiler.
+
+2. How does C4 handle symbol resolution (e.g., variables, functions)?
+
+C4 resolves symbols such as variables and functions using a symbol table which keeps track of all identifiers, their names, types, and memory locations. The first time a variable is used, it gets entered into the address table, from where the compiler retrieves the address. The same way, function declarations are entered into the symbol table with their bytecode entry points and subsequently referenced as necessary during program execution.
+
+The C4 symbol table assists these functions and helps differentiate between local and global variables, which local ones are put in the stack, and the global ones in the data segment. With the presence of an un-documented identifier, as a reference, C4 reports an error and does not compile because there is no way to provide the reference. Thus, all variable and function names can be sufficiently coordinated to eliminate collision problems during the execution of a program.
+
+3. What are the limitations of C4 as a compiler? What features of C does it not support?
+
+C4 has been made to be a portable compiler which means that it is not a full fledged C compiler and lacks several features of one. One of the primary restrictions is the lack of standard libraries, which means that functions from stdio.h, math.h and other standard headers will not be available. Also, C4 only works with basic data types such as int and char while other complex types float, double, struct, and union have not been implemented.
+
+Another significant limitation is lack of support to preprocessor directives such as #define and #include or even macros which are also crucial for modular C programming. The compiler has very weak error diagnostics and cryptic error messages and does not handle errors at all, which is worse. Also, C4 does not optimize any code in anyway , loop unrolling, constant folding, and dead code elimination do not exist in this compiler, therefore the compiled programs are severely inefficient. Because of these restrictions, this compiler is only suitable for basic C programs and not for advanced features required for software development.
+
+4. How does C4 achieve self-hosting (i.e., compiling itself)? What are the implications of this design?
+
+C4 reaches self hosting through implementing C4 in a subset of C, which it can then compile. This indicates that the first version of C4 is built via an external compiler creating an executable. That executable is then able to compile its own source code. Achieving self-hosting is executed in three stages. First, an external compiler generates a C4 binary. Next, that binary is used to compile the source code. Finally, the last step is checking if the output from that matched the original binary. After these steps are achieved, C4 can be maintained and modified without external compilers being needed.
+
+The fact that C4 compiles into itself is indicative of it being a fully functional compiler. This self hosting design allows portability as well. Meaning that C4 can be transferred to other systems through recompiling from the source code. But these approaches also come with disadvantages. Any interested bugs in C4 can cause incorrect self compilation. Therefore, damaging the entire compilation process. But even with these risks, self hosting has the feature that guarantees C4 can remain independent and transform through iterative improvements.

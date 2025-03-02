@@ -1,0 +1,98 @@
+Metric	Meaning
+NLOC	Number of Logical Lines of Code (actual code lines, excluding blanks & comments).
+CCN	Cyclomatic Complexity (higher means more branches/decisions).
+Token	Number of tokens (operators, keywords, etc.).
+PARAM	Number of parameters in the function.
+Length	Number of total lines in the function.
+
+Function	NLOC	CCN	Length	
+next()		73	82	111	
+expr()		147	91	198	
+stmt()		47	15	57
+main()		182	100	260
+
+* Lines of code (LOC) for the entire program and for individual functions.
+	next(): 73 LOC
+	expr(): 147 LOC
+	stmt(): 47 LOC
+	main(): 182 LOC
+	Total LOC: 476 (excluding comments and blank lines).
+
+* This shows that the expr() and main() functions are making up the majority of the code and that's mainly due to them
+controlling critical compiler logic such as:
+	- main() controls execution flow and initialization.
+	- expr() handles complex expression parsing.
+
+
+
+* Cyclomatic complexity of each function.
+
+* All the functions have a Cyclomatic Complexity of 15 and more which means that they are at a moderate - high level.
+This means that they are harder to maintain and test due to the excess usage of conditional statements (if, else, while)
+
+
+
+Number of functions and their sizes (in LOC).
+* There are 4 main functions
+* their sizes in LOC are 476 LOC in total 
+* or as at a function level:
+	next(): 73 LOC
+	expr(): 147 LOC
+	stmt(): 47 LOC
+	main(): 182 LOC
+
+Number of global variables and their usage.
+
+	p          2                    Tracks the current position in the source code.
+	lp         2                    Stores the last position in the source code.
+	data       4                    Manages data and BSS sections.
+	e          1                    Points to the emitted code section.
+	le         1                    Stores the last position in emitted code.
+	id         1                    Identifier for symbol table lookup.
+	sym        1                    Symbol table for global/local/static variables and functions.
+	tk         1                    Stores the current token type for parsing.
+	ival       1                    Stores the value of the current token.
+	ty         1                    Represents the type of the current expression.
+	loc        1                    Holds local variable offset.
+	line       2                    Tracks the current line number for error reporting.
+	src        1                    Debugging flag to print source and assembly.
+	debug      1                    Debugging flag to print executed instructions.
+
+Number of unique tokens and their frequency.
+
+Token      Frequency
+------------------------------
+for        16
+used       15
+and        12
+current    6
+include    5
+h          5
+operations 4
+source     4
+code       4
+data       4
+in         4
+enum       4
+etc        4
+such       3
+type       3
+as         3
+memory     3
+last       3
+local      3
+library    3
+
+Number of branches, loops, and their nesting levels.
+Branches :	    176
+Loops : 	    26 
+Max Nesting Level': 7
+
+Memory usage patterns (e.g., stack vs. heap allocation).
+'Stack Allocations (Local Variables)': 6
+'Heap Allocations (malloc, calloc, realloc)': 6
+'Heap Deallocation (free)': 1
+
+Summary:
+A total of 476 logical lines of code compose the C4 compiler including main() which has 182 LOC and expr() with 147 LOC because these functions control the execution flow and expression analysis. The code demonstrates high cyclomatic complexity numbers that span from 15 to 100 which emerges from numerous decision points that reduce maintenance abilities. Four fundamental functions support C4 compiler operations by performing the required compilation functions through main(), next(), expr(), and stmt(). The program operates through twelve global variables which fulfill the functions of token parsing while also enabling symbol lookup and debugging procedures. Token use metrics reveal that the program frequently employs the keywords for, used and operations. The source code consists of 176 branches appended with 26 loops while reaching profound conditional levels that extend to seven inside each loop. Memory management in the program extends equally between the allocation of the stack area (6 times) and the allocation of the heap area (6 times with a single free operation), suggesting a vulnerability to memory leaks. The structure of C4 presents complex features through its deep hierarchical code structure together with substantial token analysis and minimal capabilities to free up memory usage.
+
